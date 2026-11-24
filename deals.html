@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Deals — Flip Deal</title>
+<meta name="description" content="Every Flip Deal running in Riyadh tonight. Filter by kitchen, sort by what ends first, and save a deal to your deck." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23191713'/%3E%3Cpath d='M8 12h14l-4-4M24 20H10l4 4' fill='none' stroke='%23F07A22' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=sentient@400,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="deals">
+<div class="page">
+
+  <header class="site-head">
+    <a class="brand" href="index.html" aria-label="Flip Deal home">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M4 11.5h20.5L20 7" stroke="#191713" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M28 20.5H7.5L12 25" stroke="#F07A22" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>flip<em>deal</em></span>
+    </a>
+
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html">Discover</a>
+      <a href="deals.html" aria-current="page">Deals</a>
+      <a href="premium.html">Premium</a>
+      <a href="partners.html">Partners</a>
+    </nav>
+
+    <div class="head-actions">
+      <button class="icon-btn" type="button" aria-label="Notifications" id="bell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 8.6a6 6 0 1 0-12 0c0 6.4-2.6 7.4-2.6 7.4h17.2S18 15 18 8.6Z"/>
+          <path d="M13.8 20a2.1 2.1 0 0 1-3.6 0"/>
+        </svg>
+      </button>
+      <button class="icon-btn" type="button" aria-label="Settings" id="settings" aria-expanded="false" aria-controls="prefs">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 7h9M17 7h3M4 17h3M11 17h9"/>
+          <circle cx="15" cy="7" r="2.2"/>
+          <circle cx="9" cy="17" r="2.2"/>
+        </svg>
+      </button>
+      <div class="user">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80&auto=format&fit=crop" alt="Al-Shamri" />
+        <div>
+          <span class="g">Good morning!</span>
+          <span class="n">Al - Shamri</span>
+        </div>
+      </div>
+
+      <div class="prefs" id="prefs" hidden>
+        <h4>Preferences</h4>
+        <div class="pref-row">Deal alerts <button class="switch" type="button" aria-pressed="true" aria-label="Deal alerts" data-pref="alerts"></button></div>
+        <div class="pref-row">Daily mystery <button class="switch" type="button" aria-pressed="true" aria-label="Daily mystery deal" data-pref="mystery"></button></div>
+        <div class="pref-row">Weekly digest <button class="switch" type="button" aria-pressed="false" aria-label="Weekly digest" data-pref="digest"></button></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="crumb"><a href="index.html">Discover</a><span>/</span><span>Deals</span></div>
+      <div class="hero-row">
+        <div>
+          <h1 class="display">Every deal.<br /><span>One page.</span></h1>
+          <p class="lede">Nine hand-checked offers across Riyadh tonight. Filter by kitchen, sort by what ends first, and hold a deal in one tap.</p>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="gooey" data-gooey data-open="true" data-pinned="true">
+          <svg class="gooey-defs" width="0" height="0" aria-hidden="true" focusable="false">
+            <filter id="gooey-filter" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur"/>
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -10" result="goo"/>
+              <feBlend in="SourceGraphic" in2="goo"/>
+            </filter>
+          </svg>
+          <div class="gooey-shapes" aria-hidden="true">
+            <span class="gooey-pill"></span>
+            <span class="gooey-bubble"></span>
+          </div>
+          <button class="gooey-trigger" type="button" aria-label="Search deals" aria-expanded="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/>
+              <path d="m20 20-3.6-3.6"/>
+            </svg>
+          </button>
+          <span class="gooey-hint">Search deals</span>
+          <input class="gooey-input" id="deal-search" type="search" placeholder="Search dishes, places" aria-label="Search deals" autocomplete="off" data-deal-search />
+          <button class="gooey-clear" type="button" aria-label="Clear search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+
+        <label class="sort">Sort
+          <select id="deal-sort" aria-label="Sort deals">
+            <option value="ending">Ending soon</option>
+            <option value="discount">Biggest discount</option>
+            <option value="price">Price: low to high</option>
+            <option value="rating">Top rated</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="cats" role="group" aria-label="Filter deals by cuisine" data-deal-cats>
+        <button class="chip" type="button" data-cat="all" aria-pressed="true">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 3v6.5a2 2 0 0 0 4 0V3"/><path d="M8 9.5V21"/>
+              <path d="M17.5 3c-1.6 1.5-2.5 3.5-2.5 6 0 1.9.9 3 2.5 3.2V21"/>
+            </svg>
+          </span>
+          All
+        </button>
+        <button class="chip" type="button" data-cat="arabic" aria-pressed="false">
+          <span class="ico" aria-hidden="true"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=200&q=80&auto=format&fit=crop" alt="" /></span>
+          Arabic
+        </button>
+        <button class="chip" type="button" data-cat="cafe" aria-pressed="false">
+          <span class="ico" aria-hidden="true"><img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=200&q=80&auto=format&fit=crop" alt="" /></span>
+          Cafe
+        </button>
+        <button class="chip" type="button" data-cat="grill" aria-pressed="false">
+          <span class="ico" aria-hidden="true"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=200&q=80&auto=format&fit=crop" alt="" /></span>
+          Grill
+        </button>
+        <button class="chip" type="button" data-cat="dining" aria-pressed="false">
+          <span class="ico" aria-hidden="true"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=200&q=80&auto=format&fit=crop" alt="" /></span>
+          Dining
+        </button>
+      </div>
+
+      <div class="results-note">
+        <span id="deals-count">9 deals in Riyadh</span>
+        <span>Prices include VAT · refreshed at 8:00 AM</span>
+      </div>
+    </section>
+
+    <section class="section deals-list" aria-label="All deals">
+      <div class="deal-grid wide" id="deal-grid" data-deal-grid>
+        <a class="deal" href="deals.html" data-deal="zaytoun" data-cat="arabic" data-price="79" data-off="40" data-rating="4.8" data-ends="21:00">
+        <span class="deal-top">
+          <span class="deal-title">Mixed grill for two</span>
+          <span class="deal-rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.9-4.7 4.55 1.15 6.45L12 17.3l-5.75 3.1 1.15-6.45L2.7 9.4l6.45-.9L12 2.6Z"/></svg>4.8</span>
+          <span class="deal-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>Zaytoun Grill · 2.4 km</span>
+          <span class="deal-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></span>
+        </span>
+        <span class="deal-img"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=900&q=80&auto=format&fit=crop" alt="Mixed grill for two" loading="lazy" /></span>
+      </a>
+        <a class="deal" href="deals.html" data-deal="tandoor" data-cat="arabic" data-price="25" data-off="30" data-rating="4.7" data-ends="22:00">
+        <span class="deal-top">
+          <span class="deal-title">Hyderabadi biryani</span>
+          <span class="deal-rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.9-4.7 4.55 1.15 6.45L12 17.3l-5.75 3.1 1.15-6.45L2.7 9.4l6.45-.9L12 2.6Z"/></svg>4.7</span>
+          <span class="deal-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>Tandoor House · 1.2 km</span>
+          <span class="deal-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></span>
+        </span>
+        <span class="deal-img"><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=900&q=80&auto=format&fit=crop" alt="Hyderabadi biryani" loading="lazy" /></span>
+      </a>
+        <a class="deal" href="deals.html" data-deal="marsa" data-cat="arabic" data-price="45" data-off="35" data-rating="4.8" data-ends="21:30">
+        <span class="deal-top">
+          <span class="deal-title">Shrimp sayadieh</span>
+          <span class="deal-rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.9-4.7 4.55 1.15 6.45L12 17.3l-5.75 3.1 1.15-6.45L2.7 9.4l6.45-.9L12 2.6Z"/></svg>4.8</span>
+          <span class="deal-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>Marsa 12 · 4.6 km</span>
+          <span class="deal-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></span>
+        </span>
+        <span class="deal-img"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=900&q=80&auto=format&fit=crop" alt="Shrimp sayadieh" loading="lazy" /></span>
+      </a>
+        <a class="deal" href="deals.html" data-deal="olea" data-cat="arabic" data-price="45" data-off="25" data-rating="4.7" data-ends="22:00">
+        <span class="deal-top">
+          <span class="deal-title">Butter chicken &amp; naan</span>
+          <span class="deal-rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.9-4.7 4.55 1.15 6.45L12 17.3l-5.75 3.1 1.15-6.45L2.7 9.4l6.45-.9L12 2.6Z"/></svg>4.7</span>
+          <span class="deal-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>Olea Kitchen · 2.0 km</span>
+          <span class="deal-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></span>
+        </span>
+        <span class="deal-img"><img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=900&q=80&auto=format&fit=crop" alt="Butter chicken and naan" loading="lazy" /></span>
+      </a>
+        <a class="deal" href="deals.html" data-deal="bean" data-cat="cafe" data-price="24" data-off="50" data-rating="4.9" data-ends="18:00">
+        <span class="deal-top">
+          <span class="deal-title">Flat white &amp; croissant</span>
+          <span class="deal-rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.9-4.7 4.55 1.15 6.45L12 17.3l-5.75 3.1 1.15-6.45L2.7 9.4l6.45-.9L12 2.6Z"/></svg>4.9</span>
+          <span class="deal-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>Bean &amp; Bloom · 0.8 km</span>
+          <span class="deal-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></span>
+        </span>
+        <span class="deal-img"><img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=900&q=80&auto=format&fit=crop" alt="Flat white and croissant" loading="lazy" /></span>
+      </a>
+        <a class="deal" href="deals.html" data-deal="qahwa" data-cat="cafe" data-price="19" data-off="25" data-rating="4.6" data-ends="20:00">
+        <span class="deal-top">
+          <span class="deal-title">Pistachio latte</span>
+          <span class="deal-rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.9-4.7 4.55 1.15 6.45L12 17.3l-5.75 3.1 1.15-6.45L2.7 9.4l6.45-.9L12 2.6Z"/></svg>4.6</span>
+          <span class="deal-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>Qahwa 28 · 3.1 km</span>
+          <span class="deal-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></span>
+        </span>
+        <span class="deal-img"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=900&q=80&auto=format&fit=crop" alt="Pistachio latte" loading="lazy" /></span>
+      </a>
+        <a class="deal" href="deals.html" data-deal="kaffa" data-cat="cafe" data-price="32" data-off="20" data-rating="4.8" data-ends="19:00">
+        <span class="deal-top">
+          <span class="deal-title">Chemex for two</span>
+          <span class="deal-rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.9-4.7 4.55 1.15 6.45L12 17.3l-5.75 3.1 1.15-6.45L2.7 9.4l6.45-.9L12 2.6Z"/></svg>4.8</span>
+          <span class="deal-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>Kaffa Roasters · 1.7 km</span>
+          <span class="deal-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></span>
+        </span>
+        <span class="deal-img"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=900&q=80&auto=format&fit=crop" alt="Chemex for two" loading="lazy" /></span>
+      </a>
+        <a class="deal" href="deals.html" data-deal="ribroom" data-cat="grill" data-price="89" data-off="45" data-rating="4.9" data-ends="23:00">
+        <span class="deal-top">
+          <span class="deal-title">Smoked short rib</span>
+          <span class="deal-rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.9-4.7 4.55 1.15 6.45L12 17.3l-5.75 3.1 1.15-6.45L2.7 9.4l6.45-.9L12 2.6Z"/></svg>4.9</span>
+          <span class="deal-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>Rib Room · 5.2 km</span>
+          <span class="deal-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></span>
+        </span>
+        <span class="deal-img"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=900&q=80&auto=format&fit=crop" alt="Smoked short rib" loading="lazy" /></span>
+      </a>
+        <a class="deal" href="deals.html" data-deal="maison" data-cat="dining" data-price="120" data-off="30" data-rating="4.9" data-ends="22:30">
+        <span class="deal-top">
+          <span class="deal-title">Chef&rsquo;s tasting plate</span>
+          <span class="deal-rating"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.85 5.9 6.45.9-4.7 4.55 1.15 6.45L12 17.3l-5.75 3.1 1.15-6.45L2.7 9.4l6.45-.9L12 2.6Z"/></svg>4.9</span>
+          <span class="deal-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>Maison Riyadh · 3.8 km</span>
+          <span class="deal-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></span>
+        </span>
+        <span class="deal-img"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80&auto=format&fit=crop" alt="Chef's tasting plate" loading="lazy" /></span>
+      </a>
+      </div>
+      <div class="empty" id="empty">No deals match that search. Try &ldquo;biryani&rdquo;, &ldquo;latte&rdquo; or clear the filters.</div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-brand">
+      <a class="brand" href="index.html" aria-label="Flip Deal home">
+        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M4 11.5h20.5L20 7" stroke="#191713" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M28 20.5H7.5L12 25" stroke="#F07A22" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>flip<em>deal</em></span>
+      </a>
+      <p>Deals worth flipping for, every day across Riyadh.</p>
+    </div>
+    <div class="foot-col">
+      <h3>Explore</h3>
+      <a href="deals.html">Tonight&rsquo;s drops</a>
+      <a href="index.html#mystery">Mystery deal</a>
+      <a href="premium.html">Premium</a>
+    </div>
+    <div class="foot-col">
+      <h3>Company</h3>
+      <a href="partners.html">Become a partner</a>
+      <a href="partners.html">For restaurants</a>
+      <a href="mailto:press@flipdeal.sa">Press</a>
+    </div>
+    <div class="foot-col">
+      <h3>Support</h3>
+      <a href="help.html">Help centre</a>
+      <a href="legal.html#privacy">Privacy</a>
+      <a href="legal.html#terms">Terms</a>
+    </div>
+  </footer>
+  <div class="foot-bottom">
+    <span>&copy; 2026 Flip Deal. All rights reserved.</span>
+    <span>Riyadh, Saudi Arabia</span>
+  </div>
+    <nav class="tabbar" aria-label="Pages">
+    <a href="index.html" aria-label="Discover" title="Discover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.4 12 4l8 6.4V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9.6Z"/><path d="M9.4 21v-5.2a2.6 2.6 0 0 1 5.2 0V21"/></svg></a>
+    <a href="deals.html" aria-label="Deals" title="Deals" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3 9h18v3H3z"/><path d="M12 9v11"/><path d="M12 9S10.8 4.5 8.5 4.5a2.25 2.25 0 0 0 0 4.5H12Zm0 0s1.2-4.5 3.5-4.5a2.25 2.25 0 0 1 0 4.5H12Z"/></svg></a>
+    <a href="premium.html" aria-label="Premium" title="Premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.3S3.6 15 3.6 9.3A4.65 4.65 0 0 1 12 6.5a4.65 4.65 0 0 1 8.4 2.8c0 5.7-8.4 11-8.4 11Z"/></svg></a>
+    <a href="partners.html" aria-label="Partners" title="Partners"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.6 20.4c1.2-3.6 4-5.4 7.4-5.4s6.2 1.8 7.4 5.4"/></svg></a>
+  </nav>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="m5 12.5 4.5 4.5L19 7"/>
+  </svg>
+  <span id="toast-text"></span>
+</div>
+
+<script src="site.js" defer></script>
+</body>
+</html>
