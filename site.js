@@ -80,6 +80,8 @@ const DEALS = {
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
+/* toast */
+let toastTimer;
 function toast(message) {
   const el = $('#toast');
   const text = $('#toast-text');
@@ -132,8 +134,6 @@ function initBell() {
 
 /* deal quick view */
 let dealDialog;
-
-
 function buildDealDialog() {
   if (dealDialog) return;
   const wrap = document.createElement('dialog');
@@ -199,6 +199,16 @@ function openDeal(id) {
   $('#dd-title', d).focus();
 }
 
+function initQuickView() {
+  document.addEventListener('click', e => {
+    const card = e.target.closest('[data-deal]');
+    if (!card) return;
+    e.preventDefault();
+    openDeal(card.dataset.deal);
+  });
+}
+
+/* filtered deal grids */
 function initDealBrowser() {
   const grid = $('[data-deal-grid]');
   if (!grid) return;
@@ -253,7 +263,6 @@ function initDealBrowser() {
 }
 
 /* home premium rail */
-
 function initPlans() {
   const plans = $$('.plan[data-plan]');
   const subscribe = $('#subscribe');
@@ -282,7 +291,6 @@ function initPremiumPricing() {
 }
 
 /* partners form */
-
 function initPartnerForm() {
   const form = $('#partner-form');
   if (!form) return;
@@ -307,7 +315,6 @@ function initPartnerForm() {
 }
 
 /* help centre filters */
-
 function initHelp() {
   const items = $$('.qa');
   if (!items.length) return;
@@ -343,21 +350,6 @@ function initHelp() {
 }
 
 /* gooey search */
-
-function initQuickView() {
-  document.addEventListener('click', e => {
-    const card = e.target.closest('[data-deal]');
-    if (!card) return;
-    e.preventDefault();
-    openDeal(card.dataset.deal);
-  });
-}
-
-/* filtered deal grids */
-
-
-/* toast */
-let toastTimer;
 function initGooey() {
   $$('.gooey').forEach(g => {
     const input = $('.gooey-input', g);
@@ -415,23 +407,6 @@ function initGooey() {
 }
 
 /* header cube field */
-
-function initStorefront(){
-  const photo = document.querySelector('.sf-photo');
-  if (!photo) return;
-  const toggle = photo.querySelector('.sf-switch');
-  const setNight = (on) => {
-    photo.classList.toggle('is-night', on);
-    if (toggle) toggle.textContent = on ? 'Daylight' : 'Evening';
-  };
-  photo.addEventListener('click', (e) => {
-    if (e.target.closest('.sf-cta')) return;
-    setNight(!photo.classList.contains('is-night'));
-  });
-}
-
-/* boot */
-
 function initCubes() {
   const canvas = $('#cube-canvas');
   if (!canvas) return;
@@ -550,17 +525,34 @@ function initCubes() {
 }
 
 /* storefront day / evening state */
+function initStorefront(){
+  const photo = document.querySelector('.sf-photo');
+  if (!photo) return;
+  const toggle = photo.querySelector('.sf-switch');
+  const setNight = (on) => {
+    photo.classList.toggle('is-night', on);
+    if (toggle) toggle.textContent = on ? 'Daylight' : 'Evening';
+  };
+  photo.addEventListener('click', (e) => {
+    if (e.target.closest('.sf-cta')) return;
+    setNight(!photo.classList.contains('is-night'));
+  });
+}
 
+/* boot */
 document.addEventListener('DOMContentLoaded', () => {
-  initCubes();
-  initGooey();
-  initQuickView();
   initPrefs();
   initBell();
-  initStorefront();
+  initQuickView();
+  const reveal = $('#reveal');
+  if (reveal) reveal.addEventListener('click', () => openDeal('tandoor'));
   initDealBrowser();
   initPlans();
   initPremiumPricing();
   initPartnerForm();
   initHelp();
+  initGooey();
+  initCubes();
+  initStorefront();
 });
+
