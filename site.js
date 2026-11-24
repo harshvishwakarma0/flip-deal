@@ -254,6 +254,35 @@ function initDealBrowser() {
 
 /* home premium rail */
 
+function initPlans() {
+  const plans = $$('.plan[data-plan]');
+  const subscribe = $('#subscribe');
+  if (!plans.length || !subscribe) return;
+  let plan = 'monthly';
+  plans.forEach(btn => {
+    btn.addEventListener('click', () => {
+      plan = btn.dataset.plan;
+      plans.forEach(p => p.setAttribute('aria-checked', String(p === btn)));
+      subscribe.textContent = plan === 'monthly' ? 'Subscribe now — 49 SAR' : 'Subscribe now — 399 SAR';
+    });
+  });
+  subscribe.addEventListener('click', () => {
+    toast(plan === 'monthly' ? 'Welcome to Premium · 49 SAR / month' : 'Welcome to Premium · 399 SAR / year');
+  });
+}
+
+/* premium page pricing */
+function initPremiumPricing() {
+  $$('[data-choose]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const yearly = btn.dataset.choose === 'yearly';
+      toast(yearly ? 'Yearly plan selected · 399 SAR / year' : 'Monthly plan selected · 49 SAR / month');
+    });
+  });
+}
+
+/* partners form */
+
 function initQuickView() {
   document.addEventListener('click', e => {
     const card = e.target.closest('[data-deal]');
@@ -469,4 +498,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initBell();
   initStorefront();
   initDealBrowser();
+  initPlans();
+  initPremiumPricing();
 });
