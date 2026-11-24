@@ -80,6 +80,83 @@ const DEALS = {
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
+function buildDealDialog() {
+  if (dealDialog) return;
+  const wrap = document.createElement('dialog');
+  wrap.className = 'deal-dialog';
+  wrap.id = 'deal-dialog';
+  wrap.setAttribute('aria-labelledby', 'dd-title');
+  wrap.innerHTML = `
+    <div class="dd-grid">
+      <div class="dd-media"><img id="dd-img" alt="" /></div>
+      <div class="dd-body">
+        <button class="dd-close" type="button" id="dd-close" aria-label="Close deal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+        <div class="dd-meta"><span id="dd-cuisine"></span><span class="off" id="dd-off"></span></div>
+        <h2 id="dd-title" tabindex="-1"></h2>
+        <p class="dd-place" id="dd-place"></p>
+        <div class="dd-facts">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.7 5.5 6 .9-4.4 4.2 1 6-5.3-2.8L6.7 19.6l1-6L3.3 9.4l6-.9L12 3Z"/></svg><span id="dd-rating"></span></span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg><span id="dd-distance"></span></span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 1.8"/></svg><span id="dd-ends"></span></span>
+        </div>
+        <p class="dd-desc" id="dd-desc"></p>
+        <div class="dd-foot">
+          <div class="dd-price"><strong id="dd-price"></strong><span>SAR</span><s id="dd-was"></s></div>
+          <button class="btn" type="button" id="dd-add">Add to my deals</button>
+        </div>
+        <p class="dd-fine" id="dd-fine"></p>
+      </div>
+    </div>`;
+  document.body.appendChild(wrap);
+  dealDialog = wrap;
+
+  $('#dd-close', wrap).addEventListener('click', () => wrap.close());
+  wrap.addEventListener('click', e => { if (e.target === wrap) wrap.close(); });
+  wrap.addEventListener('close', () => { document.body.style.overflow = ''; });
+  $('#dd-add', wrap).addEventListener('click', () => {
+    toast(`${$('#dd-place', wrap).textContent} saved to your deals`);
+    wrap.close();
+  });
+  return wrap;
+}
+
+function openDeal(id) {
+  const deal = DEALS[id];
+  if (!deal) return;
+  buildDealDialog();
+  const d = dealDialog;
+  $('#dd-img', d).src = deal.img;
+  $('#dd-img', d).alt = deal.name;
+  $('#dd-cuisine', d).textContent = deal.cuisine;
+  $('#dd-off', d).textContent = deal.discount;
+  $('#dd-title', d).textContent = deal.name;
+  $('#dd-place', d).textContent = `${deal.place} · ${deal.distance}`;
+  $('#dd-rating', d).textContent = `${deal.rating} rating`;
+  $('#dd-distance', d).textContent = deal.distance;
+  $('#dd-ends', d).textContent = `Ends ${deal.ends}`;
+  $('#dd-desc', d).textContent = deal.desc;
+  $('#dd-price', d).textContent = deal.price;
+  $('#dd-was', d).textContent = `${deal.was} SAR`;
+  $('#dd-fine', d).textContent = deal.fine;
+  d.showModal();
+  document.body.style.overflow = 'hidden';
+  $('#dd-title', d).focus();
+}
+
+function initQuickView() {
+  document.addEventListener('click', e => {
+    const card = e.target.closest('[data-deal]');
+    if (!card) return;
+    e.preventDefault();
+    openDeal(card.dataset.deal);
+  });
+}
+
+/* filtered deal grids */
+
+
 /* toast */
 let toastTimer;
 function initGooey() {
@@ -262,4 +339,5 @@ function initCubes() {
 document.addEventListener('DOMContentLoaded', () => {
   initCubes();
   initGooey();
+  initQuickView();
 });
