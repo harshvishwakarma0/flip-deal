@@ -80,6 +80,60 @@ const DEALS = {
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
+function toast(message) {
+  const el = $('#toast');
+  const text = $('#toast-text');
+  if (!el || !text) return;
+  text.textContent = message;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+}
+
+/* header preferences */
+function initPrefs() {
+  const settings = $('#settings');
+  const prefs = $('#prefs');
+  if (!settings || !prefs) return;
+
+  settings.addEventListener('click', e => {
+    e.stopPropagation();
+    const open = prefs.hidden;
+    prefs.hidden = !open;
+    settings.setAttribute('aria-expanded', String(open));
+  });
+  prefs.addEventListener('click', e => e.stopPropagation());
+  document.addEventListener('click', () => {
+    if (!prefs.hidden) {
+      prefs.hidden = true;
+      settings.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !prefs.hidden) {
+      prefs.hidden = true;
+      settings.setAttribute('aria-expanded', 'false');
+      settings.focus();
+    }
+  });
+  $$('.switch', prefs).forEach(sw => {
+    sw.addEventListener('click', () => {
+      const on = sw.getAttribute('aria-pressed') !== 'true';
+      sw.setAttribute('aria-pressed', String(on));
+      toast(`${sw.getAttribute('aria-label')} ${on ? 'on' : 'off'}`);
+    });
+  });
+}
+
+function initBell() {
+  const bell = $('#bell');
+  if (bell) bell.addEventListener('click', () => toast('2 new deal alerts near you'));
+}
+
+/* deal quick view */
+let dealDialog;
+
+
 function buildDealDialog() {
   if (dealDialog) return;
   const wrap = document.createElement('dialog');
@@ -340,4 +394,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCubes();
   initGooey();
   initQuickView();
+  initPrefs();
+  initBell();
 });
