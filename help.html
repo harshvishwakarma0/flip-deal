@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Help centre — Flip Deal</title>
+<meta name="description" content="Answers on Flip Deal deals, redemption, Premium billing, your account and partnering with us." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23191713'/%3E%3Cpath d='M8 12h14l-4-4M24 20H10l4 4' fill='none' stroke='%23F07A22' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="help">
+<div class="page">
+
+  <header class="site-head">
+    <a class="brand" href="index.html" aria-label="Flip Deal home">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M4 11.5h20.5L20 7" stroke="#191713" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M28 20.5H7.5L12 25" stroke="#F07A22" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>flip<em>deal</em></span>
+    </a>
+
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html">Discover</a>
+      <a href="deals.html">Deals</a>
+      <a href="premium.html">Premium</a>
+      <a href="partners.html">Partners</a>
+    </nav>
+
+    <div class="head-actions">
+      <button class="icon-btn" type="button" aria-label="Notifications" id="bell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 8.6a6 6 0 1 0-12 0c0 6.4-2.6 7.4-2.6 7.4h17.2S18 15 18 8.6Z"/>
+          <path d="M13.8 20a2.1 2.1 0 0 1-3.6 0"/>
+        </svg>
+      </button>
+      <button class="icon-btn" type="button" aria-label="Settings" id="settings" aria-expanded="false" aria-controls="prefs">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 7h9M17 7h3M4 17h3M11 17h9"/>
+          <circle cx="15" cy="7" r="2.2"/>
+          <circle cx="9" cy="17" r="2.2"/>
+        </svg>
+      </button>
+      <div class="user">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80&auto=format&fit=crop" alt="Al-Shamri" />
+        <div>
+          <span class="g">Good morning!</span>
+          <span class="n">Al - Shamri</span>
+        </div>
+      </div>
+
+      <div class="prefs" id="prefs" hidden>
+        <h4>Preferences</h4>
+        <div class="pref-row">Deal alerts <button class="switch" type="button" aria-pressed="true" aria-label="Deal alerts" data-pref="alerts"></button></div>
+        <div class="pref-row">Daily mystery <button class="switch" type="button" aria-pressed="true" aria-label="Daily mystery deal" data-pref="mystery"></button></div>
+        <div class="pref-row">Weekly digest <button class="switch" type="button" aria-pressed="false" aria-label="Weekly digest" data-pref="digest"></button></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="crumb"><a href="index.html">Discover</a><span>/</span><span>Help centre</span></div>
+      <h1 class="display">How can we <span>help?</span></h1>
+      <p class="lede">Short answers on deals, Premium billing, your account and partnering with Flip Deal. If it is not here, write to a person.</p>
+
+      <div class="gooey help-search" data-gooey data-open="true" data-pinned="true">
+        <svg class="gooey-defs" width="0" height="0" aria-hidden="true" focusable="false">
+          <filter id="gooey-filter" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur"/>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -10" result="goo"/>
+            <feBlend in="SourceGraphic" in2="goo"/>
+          </filter>
+        </svg>
+        <div class="gooey-shapes" aria-hidden="true">
+          <span class="gooey-pill"></span>
+          <span class="gooey-bubble"></span>
+        </div>
+        <button class="gooey-trigger" type="button" aria-label="Search help" aria-expanded="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="m20 20-3.6-3.6"/>
+          </svg>
+        </button>
+        <span class="gooey-hint">Search help</span>
+        <input class="gooey-input" id="help-search" type="search" placeholder="Search help articles" aria-label="Search help articles" autocomplete="off" />
+        <button class="gooey-clear" type="button" aria-label="Clear search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="topics-title">
+      <div class="section-head">
+        <div>
+          <h2 id="topics-title">Browse by topic</h2>
+          <p>Pick a topic, or search above.</p>
+        </div>
+      </div>
+      <div class="topic-grid">
+        <button class="topic" type="button" data-topic="deals" aria-pressed="false">
+          <h3>Deals</h3>
+          <span>4 answers</span>
+        </button>
+        <button class="topic" type="button" data-topic="premium" aria-pressed="false">
+          <h3>Premium</h3>
+          <span>3 answers</span>
+        </button>
+        <button class="topic" type="button" data-topic="account" aria-pressed="false">
+          <h3>Account</h3>
+          <span>2 answers</span>
+        </button>
+        <button class="topic" type="button" data-topic="partners" aria-pressed="false">
+          <h3>Partners</h3>
+          <span>1 answer</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="answers-title">
+      <div class="section-head">
+        <div>
+          <h2 id="answers-title">Answers</h2>
+          <p id="help-count">10 answers</p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <details class="qa" data-topic="deals">
+          <summary>How do I redeem a deal?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Open the deal, tap <strong>Add to my deals</strong>, then show the code at the till. The partner scans it once and the discount comes off the bill. Codes are single-use and tied to your account.</p>
+        </details>
+        <details class="qa" data-topic="deals">
+          <summary>When do new deals appear?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>The full list refreshes at 8:00 AM and the evening reveal lands at 6:00 PM. Premium members see the mystery two hours before everyone else.</p>
+        </details>
+        <details class="qa" data-topic="deals">
+          <summary>What exactly is the mystery deal?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>One hand-picked offer a day, with a bigger discount than the usual list. You see the kitchen and the price before you claim it; the extra courses stay a surprise until you sit down.</p>
+        </details>
+        <details class="qa" data-topic="deals">
+          <summary>Why did a deal disappear?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Partners cap each drop and can pause it when the kitchen fills up. If it is gone before you claim it, it usually returns within the week. Saved deals stay in your deck either way.</p>
+        </details>
+
+        <details class="qa" data-topic="premium" data-keywords="cancel subscription billing refund membership">
+          <summary>How do I cancel Premium?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Settings, then Premium, then Cancel plan. You keep the benefits until the end of the period you have already paid for, then return to the free plan with your saved deals intact.</p>
+        </details>
+        <details class="qa" data-topic="premium" data-keywords="billing charge payment invoice renewal subscription">
+          <summary>When am I charged?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Billing starts on the day you subscribe, then renews monthly or yearly on the same date. We email a receipt every time. If a renewal fails, we retry once after 24 hours before pausing the plan.</p>
+        </details>
+        <details class="qa" data-topic="premium" data-keywords="points rewards expiry stars">
+          <summary>Do reward points expire?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Points last twelve months from the day you earn them and can be spent on any deal in the app. We send a note before any are about to lapse.</p>
+        </details>
+
+        <details class="qa" data-topic="account">
+          <summary>How do I change my city?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Head to Settings and choose a city. Deals and mystery picks update on the next refresh, and your saved deals stay available.</p>
+        </details>
+        <details class="qa" data-topic="account" data-keywords="delete data gdpr privacy remove account">
+          <summary>How do I delete my data?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Email privacy@flipdeal.sa from the address on your account. We remove your profile, saved deals and preferences within seven days and confirm when it is done.</p>
+        </details>
+
+        <details class="qa" data-topic="partners">
+          <summary>How do I become a partner?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Send the short form on the <a href="partners.html">partners page</a>. We onboard in Riyadh first, then Jeddah and Dammam. There is no listing fee and you approve every drop before it runs.</p>
+        </details>
+      </div>
+
+      <div class="help-empty" id="help-empty">No answers match that search. Try &ldquo;billing&rdquo;, &ldquo;cancel&rdquo; or &ldquo;partner&rdquo;.</div>
+
+      <div class="contact-card">
+        <div>
+          <h3>Still stuck?</h3>
+          <p>Write to a person at help@flipdeal.sa. Premium members get priority chat, 24 hours a day.</p>
+        </div>
+        <a class="btn" href="mailto:help@flipdeal.sa">Email support</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-brand">
+      <a class="brand" href="index.html" aria-label="Flip Deal home">
+        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M4 11.5h20.5L20 7" stroke="#191713" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M28 20.5H7.5L12 25" stroke="#F07A22" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>flip<em>deal</em></span>
+      </a>
+      <p>Deals worth flipping for, every day across Riyadh.</p>
+    </div>
+    <div class="foot-col">
+      <h3>Explore</h3>
+      <a href="deals.html">Tonight&rsquo;s drops</a>
+      <a href="index.html#mystery">Mystery deal</a>
+      <a href="premium.html">Premium</a>
+    </div>
+    <div class="foot-col">
+      <h3>Company</h3>
+      <a href="partners.html">Become a partner</a>
+      <a href="partners.html">For restaurants</a>
+      <a href="mailto:press@flipdeal.sa">Press</a>
+    </div>
+    <div class="foot-col">
+      <h3>Support</h3>
+      <a href="help.html">Help centre</a>
+      <a href="legal.html#privacy">Privacy</a>
+      <a href="legal.html#terms">Terms</a>
+    </div>
+  </footer>
+  <div class="foot-bottom">
+    <span>&copy; 2026 Flip Deal. All rights reserved.</span>
+    <span>Riyadh, Saudi Arabia</span>
+  </div>
+    <nav class="tabbar" aria-label="Pages">
+    <a href="index.html" aria-label="Discover" title="Discover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.4 12 4l8 6.4V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9.6Z"/><path d="M9.4 21v-5.2a2.6 2.6 0 0 1 5.2 0V21"/></svg></a>
+    <a href="deals.html" aria-label="Deals" title="Deals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3 9h18v3H3z"/><path d="M12 9v11"/><path d="M12 9S10.8 4.5 8.5 4.5a2.25 2.25 0 0 0 0 4.5H12Zm0 0s1.2-4.5 3.5-4.5a2.25 2.25 0 0 1 0 4.5H12Z"/></svg></a>
+    <a href="premium.html" aria-label="Premium" title="Premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.3S3.6 15 3.6 9.3A4.65 4.65 0 0 1 12 6.5a4.65 4.65 0 0 1 8.4 2.8c0 5.7-8.4 11-8.4 11Z"/></svg></a>
+    <a href="partners.html" aria-label="Partners" title="Partners"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.6 20.4c1.2-3.6 4-5.4 7.4-5.4s6.2 1.8 7.4 5.4"/></svg></a>
+  </nav>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="m5 12.5 4.5 4.5L19 7"/>
+  </svg>
+  <span id="toast-text"></span>
+</div>
+
+<script src="site.js" defer></script>
+</body>
+</html>

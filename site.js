@@ -308,6 +308,42 @@ function initPartnerForm() {
 
 /* help centre filters */
 
+function initHelp() {
+  const items = $$('.qa');
+  if (!items.length) return;
+  const search = $('#help-search');
+  const topics = $$('.topic');
+  const empty = $('#help-empty');
+  const count = $('#help-count');
+  let topic = 'all';
+
+  const apply = () => {
+    const q = (search?.value || '').trim().toLowerCase();
+    let visible = 0;
+    items.forEach(item => {
+      const inTopic = topic === 'all' || item.dataset.topic === topic;
+      const inText = !q || (item.textContent + ' ' + (item.dataset.keywords || '')).toLowerCase().includes(q);
+      const show = inTopic && inText;
+      item.hidden = !show;
+      if (show) visible++;
+    });
+    if (empty) empty.classList.toggle('show', visible === 0);
+    if (count) count.textContent = `${visible} ${visible === 1 ? 'answer' : 'answers'}`;
+  };
+
+  topics.forEach(t => {
+    t.addEventListener('click', () => {
+      topic = t.dataset.topic === topic ? 'all' : t.dataset.topic;
+      topics.forEach(x => x.setAttribute('aria-pressed', String(x.dataset.topic === topic)));
+      apply();
+    });
+  });
+  if (search) search.addEventListener('input', apply);
+  apply();
+}
+
+/* gooey search */
+
 function initQuickView() {
   document.addEventListener('click', e => {
     const card = e.target.closest('[data-deal]');
@@ -526,4 +562,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initPlans();
   initPremiumPricing();
   initPartnerForm();
+  initHelp();
 });
