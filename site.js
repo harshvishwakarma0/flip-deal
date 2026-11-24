@@ -199,6 +199,61 @@ function openDeal(id) {
   $('#dd-title', d).focus();
 }
 
+function initDealBrowser() {
+  const grid = $('[data-deal-grid]');
+  if (!grid) return;
+  const cards = $$('.deal', grid);
+  const search = $('[data-deal-search]');
+  const chips = $$('[data-deal-cats] .chip');
+  const count = $('#deals-count');
+  const live = $('#live-count');
+  const empty = $('#empty');
+  const sort = $('#deal-sort');
+  let cat = 'all';
+
+  const apply = () => {
+    const q = (search?.value || '').trim().toLowerCase();
+    const visible = [];
+    cards.forEach(card => {
+      const inCat = cat === 'all' || card.dataset.cat === cat;
+      const inText = !q || card.textContent.toLowerCase().includes(q) || (card.dataset.place || '').toLowerCase().includes(q);
+      const show = inCat && inText;
+      card.hidden = !show;
+      if (show) visible.push(card);
+    });
+    if (count) count.textContent = `${visible.length} ${visible.length === 1 ? 'deal' : 'deals'} in Riyadh`;
+    if (live) live.textContent = `${visible.length} ${visible.length === 1 ? 'deal' : 'deals'} live near you`;
+    if (empty) empty.classList.toggle('show', visible.length === 0);
+  };
+
+  const sortCards = () => {
+    if (!sort) return;
+    const mode = sort.value;
+    const sorted = [...cards].sort((a, b) => {
+      if (mode === 'price') return Number(a.dataset.price) - Number(b.dataset.price);
+      if (mode === 'discount') return Number(b.dataset.off) - Number(a.dataset.off);
+      if (mode === 'rating') return Number(b.dataset.rating) - Number(a.dataset.rating);
+      return (a.dataset.ends || '').localeCompare(b.dataset.ends || '');
+    });
+    sorted.forEach(c => grid.appendChild(c));
+    apply();
+  };
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      cat = chip.dataset.cat;
+      chips.forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
+      apply();
+    });
+  });
+  if (search) search.addEventListener('input', apply);
+  if (sort) sort.addEventListener('change', sortCards);
+  apply();
+  if (sort) sortCards();
+}
+
+/* home premium rail */
+
 function initQuickView() {
   document.addEventListener('click', e => {
     const card = e.target.closest('[data-deal]');
@@ -413,4 +468,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initPrefs();
   initBell();
   initStorefront();
+  initDealBrowser();
 });
