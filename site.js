@@ -283,6 +283,31 @@ function initPremiumPricing() {
 
 /* partners form */
 
+function initPartnerForm() {
+  const form = $('#partner-form');
+  if (!form) return;
+  const success = $('#partner-success');
+  const nameOut = $('#success-name');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    const restaurant = form.elements.restaurant.value.trim();
+    nameOut.textContent = restaurant || 'your restaurant';
+    form.closest('.form-card').hidden = true;
+    success.classList.add('show');
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    toast('Application received — check your inbox');
+  });
+  $('#again')?.addEventListener('click', () => {
+    form.reset();
+    form.closest('.form-card').hidden = false;
+    success.classList.remove('show');
+    form.elements.restaurant.focus();
+  });
+}
+
+/* help centre filters */
+
 function initQuickView() {
   document.addEventListener('click', e => {
     const card = e.target.closest('[data-deal]');
@@ -500,4 +525,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initDealBrowser();
   initPlans();
   initPremiumPricing();
+  initPartnerForm();
 });
