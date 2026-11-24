@@ -1,4 +1,4 @@
-# 🍽️ Flip Deal — Deals Worth Flipping For
+# Flip Deal — Deals Worth Flipping For
 
 <div align="center">
 
@@ -6,17 +6,16 @@
 [![Status: Production Ready](https://img.shields.io/badge/Status-Active-brightgreen.svg)]()
 [![Pure Vanilla](https://img.shields.io/badge/Tech-HTML5%20%7C%20CSS3%20%7C%20Vanilla%20JS-F07A22.svg)]()
 [![Responsive](https://img.shields.io/badge/Design-Mobile--First%20%26%20Fluid-black.svg)]()
-[![Location](https://img.shields.io/badge/Location-Riyadh%2C%20Saudi%20Arabia-191713.svg)]()
 
 **A sleek, culinary mystery and restaurant flash-deals platform crafted with modern web standards, tactile animations, and an editorial design aesthetic.**
 
-[Live Demo](#-getting-started) • [Explore Pages](#-pages-overview) • [Key Features](#-core-features) • [Design System](#-design-system) • [Architecture](#-project-architecture)
+[Live Demo](#getting-started) • [Explore Pages](#pages-overview) • [Key Features](#core-features) • [Design System](#design-system) • [Architecture](#project-architecture)
 
 </div>
 
 ---
 
-## 🌟 Overview
+## Overview
 
 **Flip Deal** transforms dining out into an exciting daily discovery. Built specifically for the vibrant culinary landscape of **Riyadh, Saudi Arabia** (headquartered in Al Olaya), Flip Deal connects hungry food enthusiasts with curated restaurants, specialty coffee houses, and luxury grill rooms offering limited-quantity flash deals and daily mystery discounts up to **70% off**.
 
@@ -29,7 +28,7 @@ Unlike bloated discount aggregators, Flip Deal delivers an elevated, editorial-g
 
 ---
 
-## 📸 Pages Overview
+## Pages Overview
 
 | Page | File | Purpose |
 | :--- | :--- | :--- |
@@ -42,38 +41,38 @@ Unlike bloated discount aggregators, Flip Deal delivers an elevated, editorial-g
 
 ---
 
-## 🚀 Core Features
+## Core Features
 
-### 1. 🎲 Today's Mystery Deal
+### 1. Today's Mystery Deal
 - Every day at dawn, a secret premier restaurant drop is featured with discounts reaching up to 70% off.
 - Engaging reveal trigger with smooth entrance animations and contextual restaurant details.
 
-### 2. 🧊 3D Isometric Canvas Scene
+### 2. 3D Isometric Canvas Scene
 - Lightweight, zero-dependency HTML5 `<canvas>` rendering engine (`site.js` -> `initCubes`).
 - Generates a dynamic matrix of stylized 3D isometric prisms that respond to user mouse coordinates with natural wave oscillations and subtle depth shifts.
 
-### 3. 🔍 Fluid Gooey Search Bar
+### 3. Fluid Gooey Search Bar
 - Powered by native SVG matrix filters (`feGaussianBlur` + `feColorMatrix` color thresholds).
 - Supports instantaneous activation via `/` keyboard shortcut, clear button, and real-time live search query filtering across restaurant names, dishes, and cuisines.
 
-### 4. ⚡ Interactive Quick View Modal & Claim Workflow
+### 4. Interactive Quick View Modal & Claim Workflow
 - Clicking any deal card mounts an accessible native `<dialog>` modal without reloading the page.
 - Displays deal expiration countdown, location distance, dine-in vs pickup conditions, and an instant redemption flow.
 - Triggers non-intrusive bottom-screen toast notifications upon claim.
 
-### 5. 🌓 Al Olaya Atmospheric Storefront Switcher
+### 5. Al Olaya Atmospheric Storefront Switcher
 - Highlights Flip Deal's physical flagship presence on King Fahd Road in Al Olaya, Riyadh.
-- Interactive day-to-evening toggle smoothly transitions between golden-hour daylight and ambient evening illumination (`storefront-day-fd.webp` ⇄ `storefront-night-fd.webp`).
+- Interactive day-to-evening toggle smoothly transitions between golden-hour daylight and ambient evening illumination (`storefront-day-fd.webp` / `storefront-night-fd.webp`).
 
-### 6. 💳 Premium Billing Interval Toggle
+### 6. Premium Billing Interval Toggle
 - Interactive monthly (49 SAR/mo) vs annual (399 SAR/yr) switch with real-time price updates and visual savings highlights.
 
-### 7. 📱 Mobile Bottom Switcher & Responsive Ergonomics
+### 7. Mobile Bottom Switcher & Responsive Ergonomics
 - Adaptive navigation tailored for touch ergonomics on mobile displays with persistent bottom quick-action switcher.
 
 ---
 
-## 🎨 Design System
+## Design System
 
 Flip Deal pairs a warm, sunlit desert palette with high-contrast typography and subtle textural grain.
 
@@ -90,7 +89,7 @@ Flip Deal pairs a warm, sunlit desert palette with high-contrast typography and 
 
 ---
 
-## 📂 Project Architecture
+## Project Architecture
 
 ```
 flip-deal/
@@ -112,7 +111,7 @@ flip-deal/
 
 ---
 
-## 💻 Getting Started
+## Getting Started
 
 Flip Deal is built purely on native web standards with zero dependencies or complex build pipelines. You can run it instantly in any modern web browser.
 
@@ -143,7 +142,7 @@ Then navigate to `http://localhost:8000` in your browser.
 
 ---
 
-## ⌨️ Keyboard Shortcuts
+## Keyboard Shortcuts
 
 | Shortcut | Action |
 | :---: | :--- |
@@ -152,7 +151,7 @@ Then navigate to `http://localhost:8000` in your browser.
 
 ---
 
-## 🛡️ Web Interface & Accessibility Guidelines
+## Web Interface & Accessibility Guidelines
 
 - **Semantic HTML**: Fully built using `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, and `<footer>` landmarks.
 - **Accessible Controls**: Standard `aria-expanded`, `aria-pressed`, `aria-label`, and `role` attributes across all interactive triggers.
@@ -161,7 +160,7 @@ Then navigate to `http://localhost:8000` in your browser.
 
 ---
 
-## 📄 License
+## License
 
 This project is open-source and available under the [MIT License](LICENSE).
 
