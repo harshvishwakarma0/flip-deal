@@ -37,10 +37,38 @@
   <main id="top">
     <div class="shell">
       <section class="home" aria-labelledby="hi">
-        <div class="home-head">
+<div class="home-head">
           <div>
             <p class="status"><span class="pin" aria-hidden="true"></span><b>Riyadh</b><span aria-hidden="true">·</span><span id="live-count">4 deals live near you</span></p>
             <h1 id="hi"><span>Hey,</span> Flip Deal</h1>
+          </div>
+
+          <div class="home-search">
+            <div class="gooey" data-gooey>
+          <svg class="gooey-defs" width="0" height="0" aria-hidden="true" focusable="false">
+            <filter id="gooey-filter" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur"/>
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -10" result="goo"/>
+              <feBlend in="SourceGraphic" in2="goo"/>
+            </filter>
+          </svg>
+          <div class="gooey-shapes" aria-hidden="true">
+            <span class="gooey-pill"></span>
+            <span class="gooey-bubble"></span>
+          </div>
+          <button class="gooey-trigger" type="button" aria-label="Open search" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"/>
+              <path d="m20 20-3.6-3.6"/>
+            </svg>
+          </button>
+          <span class="gooey-hint">Search deals</span>
+          <input class="gooey-input" id="search" type="search" placeholder="Search dishes, places" aria-label="Search deals" autocomplete="off" data-deal-search />
+          <span class="gooey-kbd">/</span>
+          <button class="gooey-clear" type="button" aria-label="Clear search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
           </div>
         </div>
       </section>

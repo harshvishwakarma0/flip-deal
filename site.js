@@ -82,6 +82,64 @@ const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
 /* toast */
 let toastTimer;
+function initGooey() {
+  $$('.gooey').forEach(g => {
+    const input = $('.gooey-input', g);
+    const trigger = $('.gooey-trigger', g);
+    const clear = $('.gooey-clear', g);
+    if (!input || !trigger) return;
+    const pinned = g.dataset.pinned === 'true';
+    if (g.dataset.open === 'true' || pinned) {
+      g.dataset.open = 'true';
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+    const open = () => {
+      g.dataset.open = 'true';
+      trigger.setAttribute('aria-expanded', 'true');
+      input.focus({ preventScroll: true });
+    };
+    const collapse = () => {
+      if (pinned) return;
+      if (input.value.trim()) return;
+      g.dataset.open = 'false';
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+    trigger.addEventListener('click', e => {
+      e.stopPropagation();
+      if (g.dataset.open === 'true' && document.activeElement === input) input.blur();
+      else open();
+    });
+    g.addEventListener('click', e => {
+      if (g.dataset.open !== 'true' && !e.target.closest('.gooey-input')) open();
+    });
+    input.addEventListener('focus', () => {
+      g.dataset.open = 'true';
+      trigger.setAttribute('aria-expanded', 'true');
+    });
+    input.addEventListener('input', () => {
+      g.dataset.hasValue = input.value.trim() ? 'true' : 'false';
+    });
+    input.addEventListener('blur', () => setTimeout(collapse, 150));
+    if (clear) {
+      clear.addEventListener('click', () => {
+        input.value = '';
+        g.dataset.hasValue = 'false';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.focus({ preventScroll: true });
+      });
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === '/' && !e.target.matches('input, textarea, select')) {
+        e.preventDefault();
+        open();
+      }
+    });
+    if (input.value.trim()) g.dataset.hasValue = 'true';
+  });
+}
+
+/* header cube field */
+
 function initCubes() {
   const canvas = $('#cube-canvas');
   if (!canvas) return;
@@ -203,4 +261,5 @@ function initCubes() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initCubes();
+  initGooey();
 });
