@@ -271,6 +271,22 @@ function initGooey() {
 
 /* header cube field */
 
+function initStorefront(){
+  const photo = document.querySelector('.sf-photo');
+  if (!photo) return;
+  const toggle = photo.querySelector('.sf-switch');
+  const setNight = (on) => {
+    photo.classList.toggle('is-night', on);
+    if (toggle) toggle.textContent = on ? 'Daylight' : 'Evening';
+  };
+  photo.addEventListener('click', (e) => {
+    if (e.target.closest('.sf-cta')) return;
+    setNight(!photo.classList.contains('is-night'));
+  });
+}
+
+/* boot */
+
 function initCubes() {
   const canvas = $('#cube-canvas');
   if (!canvas) return;
@@ -396,4 +412,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initQuickView();
   initPrefs();
   initBell();
+  initStorefront();
 });
