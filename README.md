@@ -2,6 +2,7 @@
 
 <div align="center">
 
+[![Live Demo](https://img.shields.io/badge/Demo-Live%20Preview-F07A22.svg)](https://harshvishwakarma0.github.io/flip-deal/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
 [![Status: Production Ready](https://img.shields.io/badge/Status-Active-brightgreen.svg)]()
 [![Pure Vanilla](https://img.shields.io/badge/Tech-HTML5%20%7C%20CSS3%20%7C%20Vanilla%20JS-F07A22.svg)]()
@@ -9,7 +10,7 @@
 
 **A sleek, culinary mystery and restaurant flash-deals platform crafted with modern web standards, tactile animations, and an editorial design aesthetic.**
 
-[Live Demo](#getting-started) • [Explore Pages](#pages-overview) • [Key Features](#core-features) • [Design System](#design-system) • [Architecture](#project-architecture)
+[Live Demo](https://harshvishwakarma0.github.io/flip-deal/) • [Explore Pages](#pages-overview) • [Key Features](#core-features) • [Design System](#design-system) • [Architecture](#project-architecture)
 
 </div>
 
@@ -111,9 +112,16 @@ flip-deal/
 
 ---
 
-## Getting Started
+## Live Deployment
 
-Flip Deal is built purely on native web standards with zero dependencies or complex build pipelines. You can run it instantly in any modern web browser.
+The application is deployed live and publicly accessible:
+- **Production URL:** [https://harshvishwakarma0.github.io/flip-deal/](https://harshvishwakarma0.github.io/flip-deal/)
+
+---
+
+## Local Development
+
+Flip Deal is built purely on native web standards with zero dependencies or complex build pipelines. You can run it locally in any modern web browser.
 
 ### Option 1: Direct File Launch
 Simply double-click `index.html` or open it with your browser of choice:
