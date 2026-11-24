@@ -82,3 +82,125 @@ const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
 /* toast */
 let toastTimer;
+function initCubes() {
+  const canvas = $('#cube-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w = 0, h = 0, dpr = 1;
+  let pointer = 0, pointerTarget = 0;
+  let raf = 0;
+
+  const resize = () => {
+    const rect = canvas.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = Math.max(1, Math.round(rect.width));
+    h = Math.max(1, Math.round(rect.height));
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (reduce) draw(0);
+  };
+
+  const drawCube = (cx, cy, hw, hh, rise, topFill, leftFill, rightFill) => {
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - rise - hh);
+    ctx.lineTo(cx + hw, cy - rise);
+    ctx.lineTo(cx, cy - rise + hh);
+    ctx.lineTo(cx - hw, cy - rise);
+    ctx.closePath();
+    ctx.fillStyle = topFill;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(cx - hw, cy - rise);
+    ctx.lineTo(cx, cy - rise + hh);
+    ctx.lineTo(cx, cy + hh);
+    ctx.lineTo(cx - hw, cy);
+    ctx.closePath();
+    ctx.fillStyle = leftFill;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(cx + hw, cy - rise);
+    ctx.lineTo(cx, cy - rise + hh);
+    ctx.lineTo(cx, cy + hh);
+    ctx.lineTo(cx + hw, cy);
+    ctx.closePath();
+    ctx.fillStyle = rightFill;
+    ctx.fill();
+  };
+
+  const draw = (t) => {
+    ctx.clearRect(0, 0, w, h);
+    const cx = w * 0.5 + pointer * 28;
+    const top = -h * 0.04;
+    const field = h * 0.7;
+    const cols = w > 900 ? 12 : 7;
+    const rows = 6;
+    const angle = 0.62 + pointer * 0.05 + Math.sin(t * 0.00006) * 0.045;
+    const cos = Math.cos(angle), sin = Math.sin(angle);
+
+    const cells = [];
+    for (let j = 0; j < rows; j++) {
+      for (let i = 0; i < cols; i++) {
+        const gx = (i - (cols - 1) / 2) * 138;
+        const gz = (j - (rows - 1) / 2) * 138;
+        const rx = gx * cos - gz * sin;
+        const rz = gx * sin + gz * cos;
+        const d = Math.min(1, Math.max(0, (rz + 520) / 1040));
+        const scale = 0.38 + d * 0.62;
+        const sx = cx + rx * scale * 1.2;
+        const sy = top + Math.pow(d, 1.3) * field;
+        const seed = Math.sin(i * 12.9898 + j * 78.233) * 43758.5453;
+        const rnd = seed - Math.floor(seed);
+        const pulse = reduce ? 1 : 1 + Math.sin(t * 0.0009 + i * 0.7 + j * 0.5) * 0.12;
+        cells.push({ sx, sy, d, scale, rnd, pulse });
+      }
+    }
+    cells.sort((a, b) => a.d - b.d);
+
+    cells.forEach(c => {
+      const hw = 24 * c.scale;
+      const hh = hw * 0.52;
+      const rise = (20 + c.rnd * 46) * c.scale * c.pulse;
+      const accent = c.rnd > 0.92;
+      const near = 0.18 + c.d * 0.26;
+      drawCube(
+        c.sx, c.sy, hw, hh, rise,
+        accent ? `rgba(240,122,34,${0.12 + c.d * 0.12})` : `rgba(255,248,239,${near + 0.08})`,
+        accent ? `rgba(213,101,26,${0.1 + c.d * 0.1})` : `rgba(229,211,190,${near})`,
+        accent ? `rgba(196,90,22,${0.12 + c.d * 0.12})` : `rgba(217,197,173,${near - 0.02})`
+      );
+      ctx.strokeStyle = `rgba(25,23,19,${0.012 + c.d * 0.02})`;
+      ctx.lineWidth = 0.7;
+      ctx.stroke();
+    });
+  };
+
+  const loop = (t) => {
+    pointer += (pointerTarget - pointer) * 0.04;
+    draw(t);
+    raf = requestAnimationFrame(loop);
+  };
+
+  resize();
+  window.addEventListener('resize', resize);
+  if (!reduce) {
+    raf = requestAnimationFrame(loop);
+    window.addEventListener('pointermove', e => {
+      pointerTarget = (e.clientX / window.innerWidth - 0.5) * 2;
+    }, { passive: true });
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelAnimationFrame(raf);
+    else if (!reduce) raf = requestAnimationFrame(loop);
+  });
+}
+
+/* storefront day / evening state */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initCubes();
+});
